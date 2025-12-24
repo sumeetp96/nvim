@@ -1,20 +1,26 @@
 local M = {}
 
 local toggles = {
-  ["true"] = "false",
-  ["false"] = "true",
-  ["True"] = "False",
-  ["False"] = "True",
-  ["yes"] = "no",
-  ["no"] = "yes",
-  ["on"] = "off",
-  ["off"] = "on",
-  ["0"] = "1",
-  ["1"] = "0",
+  ['true'] = 'false',
+  ['false'] = 'true',
+  ['True'] = 'False',
+  ['False'] = 'True',
+  ['yes'] = 'no',
+  ['no'] = 'yes',
+  ['on'] = 'off',
+  ['off'] = 'on',
+  ['0'] = '1',
+  ['1'] = '0',
+  ['disabled'] = 'enabled',
+  ['enabled'] = 'disabled',
+  ['left'] = 'right',
+  ['right'] = 'left',
+  ['top'] = 'bottom',
+  ['bottom'] = 'top',
 }
 
 function M.toggle_bool()
-  local word = vim.fn.expand("<cword>")
+  local word = vim.fn.expand('<cword>')
   local replacement = toggles[word]
   if not replacement then
     return
@@ -24,7 +30,7 @@ function M.toggle_bool()
   local cursor = vim.api.nvim_win_get_cursor(0)
 
   -- Replace word under cursor without yanking
-  vim.cmd(("silent! s/\\<%s\\>/%s/"):format(word, replacement))
+  vim.cmd(('silent! s/\\<%s\\>/%s/'):format(word, replacement))
 
   -- Restore cursor
   vim.api.nvim_win_set_cursor(0, cursor)
