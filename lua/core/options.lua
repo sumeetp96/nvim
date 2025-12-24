@@ -36,8 +36,10 @@ vim.opt.isfname:append("@-@")
 
 -- Undo
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
-vim.g.undotree_WindowLayout = 3
+vim.opt.undodir = vim.fn.stdpath('data') .. '/undo'
+vim.g.undotree_WindowLayout = 2
+vim.g.undotree_SplitWidth = 35
+vim.g.undotree_DiffpanelHeight = 5
 
 -- LazyGit
 vim.g.lazygit_floating_window_winblend = 0
