@@ -20,7 +20,7 @@ return {
         'diff',
         'query',
         'vim',
-        'vimdoc'
+        'vimdoc',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -40,8 +40,8 @@ return {
       },
       indent = {
         enable = true,
-        disable = {}
+        disable = {},
       },
-    }
-  }
+    },
+  },
 }

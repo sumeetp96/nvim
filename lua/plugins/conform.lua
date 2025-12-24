@@ -1,18 +1,18 @@
 return {
   {
-    "stevearc/conform.nvim",
+    'stevearc/conform.nvim',
     config = function()
-      require("conform").setup({
+      require('conform').setup({
         formatters_by_ft = {
-          lua = {"stylua"},
-          javascript = { "prettier" },
-          typescript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescriptreact = { "prettier" },
-          json = { "prettier" },
-          html = { "prettier" },
-          css = { "prettier" },
-          markdown = { "prettier" },
+          lua = { 'stylua' },
+          javascript = { 'prettier' },
+          typescript = { 'prettier' },
+          javascriptreact = { 'prettier' },
+          typescriptreact = { 'prettier' },
+          json = { 'prettier' },
+          html = { 'prettier' },
+          css = { 'prettier' },
+          markdown = { 'prettier' },
         },
         format_on_save = function(bufnr)
           -- allow disabling globally or per buffer
@@ -27,10 +27,9 @@ return {
         end,
       })
 
-      vim.keymap.set("n", "<leader>f", function()
-        require("conform").format({ async = true })
+      vim.keymap.set('n', '<leader>f', function()
+        require('conform').format({ async = true })
       end)
-
     end,
-  }
+  },
 }

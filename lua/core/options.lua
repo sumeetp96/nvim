@@ -16,11 +16,11 @@ vim.opt.incsearch = true
 -- UI
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 
 -- Behavior
 vim.opt.scrolloff = 8
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = 'unnamedplus'
 vim.opt.updatetime = 250
 vim.g.disable_autoformat = false
 
@@ -29,7 +29,7 @@ vim.opt.exrc = true
 vim.opt.secure = true
 
 -- Allows @ in filenames
-vim.opt.isfname:append("@-@")
+vim.opt.isfname:append('@-@')
 
 -- Color column
 -- vim.opt.colorcolumn = "80"
