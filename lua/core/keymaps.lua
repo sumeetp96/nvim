@@ -97,6 +97,9 @@ map('n', '<leader>u', '<cmd>UndotreeToggle<CR>', { desc = 'Undo tree' })
 -- Lazygit
 map('n', '<leader>gg', '<cmd>LazyGit<CR>', { desc = 'LazyGit' })
 
+-- Neo tree
+map('n', '<leader>e', '<cmd>Neotree toggle<CR>', { desc = 'File tree toggle' })
+
 -- Reload config
 map('n', '<leader>so', function()
   require('core.reload').reload()
