@@ -13,7 +13,7 @@ map('v', '>', '>gv')
 map('v', '<', '<gv')
 
 -- Clear search highlight
-map('n', '<leader>z', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
+map('n', '<leader>ch', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
 
 -- Move selected block up/down
 map('v', 'J', ":m '>+1<cr>gv=gv")
