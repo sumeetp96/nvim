@@ -3,6 +3,11 @@ vim.g.maplocalleader = ' '
 
 local map = vim.keymap.set
 
+-- Reload config
+map('n', '<leader>R', function()
+  require('util.reload-config').reload()
+end, { desc = 'Source nvim config' })
+
 -- Keep visual selection when indenting
 map('v', '>', '>gv')
 map('v', '<', '<gv')
@@ -68,7 +73,7 @@ map('n', '-', '<C-x>')
 
 -- Word toggles
 map('n', '<leader>i', function()
-  require('core.toggle').toggle_bool()
+  require('util.toggle-bool').toggle_bool()
 end, { desc = 'Toggle word to opposite' })
 
 -- Navigate in tmux
@@ -77,18 +82,18 @@ map('n', '<C-j>', '<Cmd>TmuxNavigateDown<CR>')
 map('n', '<C-k>', '<Cmd>TmuxNavigateUp<CR>')
 map('n', '<C-l>', '<Cmd>TmuxNavigateRight<CR>')
 
--- Quick log
+-- Debug Log
 map('n', '<leader>l', function()
-  require('core.quicklog').log_simple()
-end, { desc = 'Quick log' })
+  require('util.debug-log').log_simple()
+end, { desc = 'Debug log' })
 map('v', '<leader>l', function()
-  require('core.quicklog').log_simple()
-end, { desc = 'Quick log (selection)' })
+  require('util.debug-log').log_simple()
+end, { desc = 'Debug log (selection)' })
 map('n', '<leader>L', function()
-  require('core.quicklog').log_context()
+  require('util.debug-log').log_context()
 end, { desc = 'Contextual log' })
 map('v', '<leader>L', function()
-  require('core.quicklog').log_context()
+  require('util.debug-log').log_context()
 end, { desc = 'Contextual log (selection)' })
 
 -- Undo tree
@@ -99,8 +104,3 @@ map('n', '<leader>gg', '<cmd>LazyGit<CR>', { desc = 'LazyGit' })
 
 -- Neo tree
 map('n', '<leader>e', '<cmd>Neotree toggle<CR>', { desc = 'File tree toggle' })
-
--- Reload config
-map('n', '<leader>so', function()
-  require('core.reload').reload()
-end, { desc = 'Reload Neovim config' })
