@@ -78,7 +78,7 @@ return {
           ['<C-e>'] = cmp.mapping.abort(),
 
           -- Confirm selection
-          ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Only confirm explicitly selected items
+          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Only confirm explicitly selected items
 
           -- Super Tab-like behavior
           ['<Tab>'] = cmp.mapping(function(fallback)

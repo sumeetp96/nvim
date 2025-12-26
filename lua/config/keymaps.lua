@@ -29,6 +29,12 @@ map('n', '<C-j>', '<C-w>j', { desc = 'Move to lower window' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Move to upper window' })
 map('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })
 
+-- Navigate in tmux
+map('n', '<C-h>', '<Cmd>TmuxNavigateLeft<CR>')
+map('n', '<C-j>', '<Cmd>TmuxNavigateDown<CR>')
+map('n', '<C-k>', '<Cmd>TmuxNavigateUp<CR>')
+map('n', '<C-l>', '<Cmd>TmuxNavigateRight<CR>')
+
 -- Resize windows
 map('n', '<M-Up>', '<cmd>resize -2<cr>')
 map('n', '<M-Down>', '<cmd>resize +2<cr>')
@@ -75,12 +81,6 @@ map('n', '-', '<C-x>')
 map('n', '<leader>i', function()
   require('util.toggle-bool').toggle_bool()
 end, { desc = 'Toggle word to opposite' })
-
--- Navigate in tmux
-map('n', '<C-h>', '<Cmd>TmuxNavigateLeft<CR>')
-map('n', '<C-j>', '<Cmd>TmuxNavigateDown<CR>')
-map('n', '<C-k>', '<Cmd>TmuxNavigateUp<CR>')
-map('n', '<C-l>', '<Cmd>TmuxNavigateRight<CR>')
 
 -- Debug Log
 map('n', '<leader>l', function()
