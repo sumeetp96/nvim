@@ -13,11 +13,33 @@ map('v', '>', '>gv')
 map('v', '<', '<gv')
 
 -- Clear search highlight
-map('n', '<leader>ch', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
+map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
 
 -- Move selected block up/down
 map('v', 'J', ":m '>+1<cr>gv=gv")
 map('v', 'K', ":m '<-2<cr>gv=gv")
+
+-- Create/Close tabs
+map('n', '<leader>tn', '<cmd>tabnew<cr>', { desc = 'New tab' })
+map('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = 'Close tab' })
+map('n', '<leader>to', '<cmd>tabonly<cr>', { desc = 'Close other tabs' })
+
+-- Navigate tabs
+map('n', '<leader>tl', '<cmd>tabnext<cr>', { desc = 'Next tab' })
+map('n', '<leader>th', '<cmd>tabprevious<cr>', { desc = 'Previous tab' })
+map('n', '<Tab>', '<cmd>tabnext<cr>', { desc = 'Next tab' })
+map('n', '<S-Tab>', '<cmd>tabprevious<cr>', { desc = 'Previous tab' })
+
+-- Move tabs
+map('n', '<leader>tmp', '<cmd>-tabmove<cr>', { desc = 'Move tab left' })
+map('n', '<leader>tmn', '<cmd>+tabmove<cr>', { desc = 'Move tab right' })
+
+-- Go to specific tab
+map('n', '<leader>t1', '1gt', { desc = 'Go to tab 1' })
+map('n', '<leader>t2', '2gt', { desc = 'Go to tab 2' })
+map('n', '<leader>t3', '3gt', { desc = 'Go to tab 3' })
+map('n', '<leader>t4', '4gt', { desc = 'Go to tab 4' })
+map('n', '<leader>t5', '5gt', { desc = 'Go to tab 5' })
 
 -- Window split
 map('n', '<leader>-', '<cmd>split<cr><C-w>w', { desc = 'Split window vertically' })
@@ -101,6 +123,3 @@ map('n', '<leader>u', '<cmd>UndotreeToggle<CR>', { desc = 'Undo tree' })
 
 -- Lazygit
 map('n', '<leader>gg', '<cmd>LazyGit<CR>', { desc = 'LazyGit' })
-
--- Neo tree
-map('n', '<leader>e', '<cmd>Neotree toggle<CR>', { desc = 'File tree toggle' })
