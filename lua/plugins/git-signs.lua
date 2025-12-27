@@ -1,10 +1,9 @@
 return {
   'lewis6991/gitsigns.nvim',
-  event = { 'BufReadPre', 'BufNewFile' }, -- Load when opening files
+  event = { 'BufReadPre', 'BufNewFile' },
 
   config = function()
     require('gitsigns').setup({
-      -- Signs placed in the sign column
       signs = {
         add = { text = '┃' },
         change = { text = '┃' },
@@ -14,59 +13,24 @@ return {
         untracked = { text = '┆' },
       },
 
-      -- Signs for staged changes
-      signs_staged = {
-        add = { text = '┃' },
-        change = { text = '┃' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked = { text = '┆' },
-      },
-
-      signs_staged_enable = true,
-      signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-      numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-      linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-      word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-
-      watch_gitdir = {
-        follow_files = true,
-      },
-
-      auto_attach = true,
-      attach_to_untracked = false,
-
-      -- Show git blame inline (disabled by default)
-      current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
       current_line_blame_opts = {
-        virt_text = true,
-        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
         delay = 1000,
-        ignore_whitespace = false,
-        virt_text_priority = 100,
       },
 
-      current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-
-      -- Keymaps
       on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
-
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
+        local map = function(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
         end
 
-        -- Navigation between hunks
+        -- Navigation
         map('n', ']h', function()
           if vim.wo.diff then
             vim.cmd.normal({ ']h', bang = true })
           else
             gitsigns.nav_hunk('next')
           end
-        end, { desc = 'Next git hunk' })
+        end, 'Next hunk')
 
         map('n', '[h', function()
           if vim.wo.diff then
@@ -74,40 +38,42 @@ return {
           else
             gitsigns.nav_hunk('prev')
           end
-        end, { desc = 'Previous git hunk' })
+        end, 'Previous hunk')
 
         -- Actions
-        -- Normal mode
-        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'Stage hunk' })
-        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'Reset hunk' })
-        map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'Stage buffer' })
-        map('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = 'Undo stage hunk' })
-        map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'Reset buffer' })
-        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview hunk' })
-        map('n', '<leader>hi', gitsigns.preview_hunk_inline, { desc = 'Preview hunk inline' })
+        map('n', '<leader>hs', gitsigns.stage_hunk, 'Stage hunk')
+        map('n', '<leader>hr', gitsigns.reset_hunk, 'Reset hunk')
+        map('n', '<leader>hS', gitsigns.stage_buffer, 'Stage buffer')
+        map('n', '<leader>hu', gitsigns.undo_stage_hunk, 'Undo stage hunk')
+        map('n', '<leader>hR', gitsigns.reset_buffer, 'Reset buffer')
+        map('n', '<leader>hp', gitsigns.preview_hunk, 'Preview hunk')
         map('n', '<leader>hb', function()
           gitsigns.blame_line({ full = true })
-        end, { desc = 'Blame line' })
-        map('n', '<leader>hd', gitsigns.diffthis, { desc = 'Diff this' })
-        map('n', '<leader>hD', function()
-          gitsigns.diffthis('~')
-        end, { desc = 'Diff this ~' })
+        end, 'Blame line')
+        -- Open diff in split
+        map('n', '<leader>hd', function()
+          vim.cmd('split')
+          gitsigns.diffthis()
+        end, 'Diff this (vsplit)')
 
-        -- Toggle features
-        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'Toggle git blame' })
-        map('n', '<leader>td', gitsigns.toggle_deleted, { desc = 'Toggle deleted' })
+        -- Open diff in new tab
+        map('n', '<leader>hD', function()
+          vim.cmd('tabnew %')
+          gitsigns.diffthis()
+        end, 'Diff this (new tab)')
+        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, 'Toggle git blame')
 
         -- Visual mode
         map('v', '<leader>hs', function()
           gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = 'Stage hunk' })
+        end, 'Stage hunk')
 
         map('v', '<leader>hr', function()
           gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = 'Reset hunk' })
+        end, 'Reset hunk')
 
-        -- Text objects
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Select hunk' })
+        -- Text object
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'Select hunk')
       end,
     })
   end,

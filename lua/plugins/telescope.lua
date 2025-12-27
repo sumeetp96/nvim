@@ -1,41 +1,60 @@
+-- lua/your-name/plugins/telescope.lua
+
 return {
   'nvim-telescope/telescope.nvim',
-  cmd = 'Telescope', -- Load on command
+  cmd = 'Telescope',
   dependencies = {
-    'nvim-lua/plenary.nvim', -- Required dependency
-
-    -- FZF native sorter for better performance (optional but recommended)
-    {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make',
-    },
+    'nvim-lua/plenary.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
 
   keys = {
     -- File pickers
     { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
+    {
+      '<leader>fa',
+      '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<cr>',
+      desc = 'Find All Files (hidden)',
+    },
     { '<leader>fg', '<cmd>Telescope git_files<cr>', desc = 'Find Git Files' },
     { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent Files' },
+    { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
 
     -- Search pickers
-    { '<leader>fw', '<cmd>Telescope live_grep<cr>', desc = 'Find Word (Live Grep)' },
-    { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Find Buffers' },
-    { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Help Tags' },
+    { '<leader>fw', '<cmd>Telescope live_grep<cr>', desc = 'Live Grep' },
+    { '<leader>fW', '<cmd>Telescope grep_string<cr>', desc = 'Grep Word Under Cursor' },
+    { '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = 'Search in Buffer' },
 
     -- LSP pickers
     { '<leader>fs', '<cmd>Telescope lsp_document_symbols<cr>', desc = 'Document Symbols' },
     { '<leader>fS', '<cmd>Telescope lsp_workspace_symbols<cr>', desc = 'Workspace Symbols' },
     { '<leader>fd', '<cmd>Telescope diagnostics<cr>', desc = 'Diagnostics' },
+    { '<leader>fi', '<cmd>Telescope lsp_implementations<cr>', desc = 'Implementations' },
+    { '<leader>fD', '<cmd>Telescope lsp_definitions<cr>', desc = 'Definitions' },
+    { '<leader>fR', '<cmd>Telescope lsp_references<cr>', desc = 'References' },
 
     -- Git pickers
     { '<leader>gc', '<cmd>Telescope git_commits<cr>', desc = 'Git Commits' },
+    { '<leader>gC', '<cmd>Telescope git_bcommits<cr>', desc = 'Buffer Commits' },
+    { '<leader>gb', '<cmd>Telescope git_branches<cr>', desc = 'Git Branches' },
     { '<leader>gs', '<cmd>Telescope git_status<cr>', desc = 'Git Status' },
+    { '<leader>gS', '<cmd>Telescope git_stash<cr>', desc = 'Git Stash' },
 
-    -- Other useful pickers
-    { '<leader>fc', '<cmd>Telescope colorscheme<cr>', desc = 'Colorscheme' },
+    -- Vim pickers
+    { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Help Tags' },
     { '<leader>fk', '<cmd>Telescope keymaps<cr>', desc = 'Keymaps' },
+    { '<leader>fc', '<cmd>Telescope commands<cr>', desc = 'Commands' },
+    { '<leader>fC', '<cmd>Telescope colorscheme<cr>', desc = 'Colorschemes' },
+    { '<leader>fH', '<cmd>Telescope highlights<cr>', desc = 'Highlight Groups' },
     { '<leader>fm', '<cmd>Telescope marks<cr>', desc = 'Marks' },
-    { '<leader>f/', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = 'Search in Buffer' },
+    { '<leader>fj', '<cmd>Telescope jumplist<cr>', desc = 'Jumplist' },
+    { '<leader>fo', '<cmd>Telescope vim_options<cr>', desc = 'Vim Options' },
+    { '<leader>fq', '<cmd>Telescope quickfix<cr>', desc = 'Quickfix List' },
+    { '<leader>fl', '<cmd>Telescope loclist<cr>', desc = 'Location List' },
+
+    -- Telescope built-ins
+    { '<leader>ft', '<cmd>Telescope builtin<cr>', desc = 'Telescope Builtins' },
+    { '<leader>f?', '<cmd>Telescope resume<cr>', desc = 'Resume Last Picker' },
   },
 
   config = function()
@@ -44,113 +63,34 @@ return {
 
     telescope.setup({
       defaults = {
-        -- Visual configuration
         prompt_prefix = '🔍 ',
         selection_caret = '➜ ',
-        path_display = { 'truncate' }, -- truncate, smart, absolute
+        path_display = { 'truncate' },
+        file_ignore_patterns = { 'node_modules', '.git/', 'dist/', 'build/' },
 
-        -- File previewer
-        file_ignore_patterns = {
-          'node_modules',
-          '.git/',
-          'dist/',
-          'build/',
-          'target/',
-          '%.lock',
-        },
-
-        -- Layout configuration
-        layout_strategy = 'horizontal', -- horizontal, vertical, center, flex
+        layout_strategy = 'horizontal',
         layout_config = {
           horizontal = {
             prompt_position = 'top',
             preview_width = 0.55,
-            results_width = 0.8,
-          },
-          vertical = {
-            mirror = false,
           },
           width = 0.87,
           height = 0.80,
-          preview_cutoff = 120,
         },
 
-        -- Sorting strategy
-        sorting_strategy = 'ascending', -- ascending or descending
+        sorting_strategy = 'ascending',
 
-        -- Key mappings inside Telescope
         mappings = {
-          i = { -- Insert mode
-            ['<C-n>'] = actions.move_selection_next,
-            ['<C-p>'] = actions.move_selection_previous,
+          i = {
             ['<C-j>'] = actions.move_selection_next,
             ['<C-k>'] = actions.move_selection_previous,
-
-            ['<C-c>'] = actions.close,
-            ['<Esc>'] = actions.close,
-
-            ['<Down>'] = actions.move_selection_next,
-            ['<Up>'] = actions.move_selection_previous,
-
-            ['<CR>'] = actions.select_default,
-            ['<C-x>'] = actions.select_horizontal,
-            ['<C-v>'] = actions.select_vertical,
-            ['<C-t>'] = actions.select_tab,
-
-            ['<C-u>'] = actions.preview_scrolling_up,
-            ['<C-d>'] = actions.preview_scrolling_down,
-
-            -- Send to quickfix list
             ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
-            ['<M-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
-
-            -- Cycle through history
-            ['<C-Down>'] = actions.cycle_history_next,
-            ['<C-Up>'] = actions.cycle_history_prev,
-
-            -- Show available mappings
-            ['<C-/>'] = actions.which_key,
-          },
-
-          n = { -- Normal mode
-            ['q'] = actions.close,
-            ['<Esc>'] = actions.close,
-
-            ['<CR>'] = actions.select_default,
-            ['<C-x>'] = actions.select_horizontal,
-            ['<C-v>'] = actions.select_vertical,
-            ['<C-t>'] = actions.select_tab,
-
-            ['j'] = actions.move_selection_next,
-            ['k'] = actions.move_selection_previous,
-            ['H'] = actions.move_to_top,
-            ['M'] = actions.move_to_middle,
-            ['L'] = actions.move_to_bottom,
-
-            ['<Down>'] = actions.move_selection_next,
-            ['<Up>'] = actions.move_selection_previous,
-            ['gg'] = actions.move_to_top,
-            ['G'] = actions.move_to_bottom,
-
-            ['<C-u>'] = actions.preview_scrolling_up,
-            ['<C-d>'] = actions.preview_scrolling_down,
-
-            ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
-            ['<M-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
-
-            ['?'] = actions.which_key,
           },
         },
       },
 
-      -- Picker-specific configurations
       pickers = {
         find_files = {
-          theme = 'dropdown',
-          previewer = false,
-          hidden = true, -- Show hidden files (change to true if needed)
-        },
-        git_files = {
           theme = 'dropdown',
           previewer = false,
         },
@@ -159,43 +99,21 @@ return {
           previewer = false,
           initial_mode = 'normal',
           mappings = {
-            i = {
-              ['<C-d>'] = actions.delete_buffer,
-            },
-            n = {
-              ['dd'] = actions.delete_buffer,
-            },
+            n = { ['dd'] = actions.delete_buffer },
           },
-        },
-        colorscheme = {
-          enable_preview = true,
-        },
-        lsp_references = {
-          theme = 'cursor',
-          initial_mode = 'normal',
-        },
-        lsp_definitions = {
-          theme = 'cursor',
-          initial_mode = 'normal',
-        },
-        lsp_implementations = {
-          theme = 'cursor',
-          initial_mode = 'normal',
         },
       },
 
-      -- Extension configurations
       extensions = {
         fzf = {
-          fuzzy = true, -- false will only do exact matching
-          override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true, -- override the file sorter
-          case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = 'smart_case',
         },
       },
     })
 
-    -- Load extensions
     telescope.load_extension('fzf')
   end,
 }
