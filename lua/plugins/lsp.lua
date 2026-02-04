@@ -112,6 +112,20 @@ return {
           end, 'Next diagnostic')
           map('<leader>d', vim.diagnostic.open_float, 'Show diagnostic')
           map('<leader>q', vim.diagnostic.setloclist, 'Diagnostic list')
+
+          -- Organize imports for JS/TS files
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.name == 'ts_ls' then
+            map('<leader>co', function()
+              vim.lsp.buf.code_action({
+                apply = true,
+                context = {
+                  only = { 'source.organizeImports' },
+                  diagnostics = {},
+                },
+              })
+            end, 'Organize imports')
+          end
         end,
       })
 
