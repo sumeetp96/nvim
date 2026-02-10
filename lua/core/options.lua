@@ -40,5 +40,5 @@ vim.g.neovide_padding_right = 0
 vim.g.neovide_padding_bottom = 0
 
 -- Enable spell checker
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = "en_us"
