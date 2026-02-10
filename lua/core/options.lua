@@ -35,5 +35,10 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.exrc = true
 vim.opt.secure = true
 
+-- Remove padding from right and bottom
 vim.g.neovide_padding_right = 0
 vim.g.neovide_padding_bottom = 0
+
+-- Enable spell checker
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
