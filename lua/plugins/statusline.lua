@@ -1,3 +1,12 @@
+local function shorten_branch(branch_name)
+	local max_length = 25
+	if #branch_name > max_length then
+		return string.sub(branch_name, 1, max_length) .. "..."
+	else
+		return branch_name
+	end
+end
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",
@@ -12,7 +21,7 @@ return {
 				},
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_b = { { "branch", fmt = shorten_branch }, "diff", "diagnostics" },
 					lualine_c = {
 						{ "filename", path = 1 },
 					},

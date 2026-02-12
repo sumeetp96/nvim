@@ -12,8 +12,6 @@ map("n", "Q", "<nop>")
 map("n", "<C-i>", "<C-i>", { noremap = true })
 
 -- Current file operations
-map("n", "<leader>w", ":w<CR>", { desc = "Write file" })
-map("n", "<leader>q", ":q<CR>", { desc = "Quit file" })
 map("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
 
 -- Manually clear search highlight

@@ -5,7 +5,7 @@ local themes = {
 	gruvbox_material = "gruvbox_material",
 }
 
-local active_theme = themes.rose_pine
+local active_theme = themes.kanagawa
 local bg_transparent = false
 
 return {
