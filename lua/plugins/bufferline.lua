@@ -7,6 +7,7 @@ return {
 		keys = {
 			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
 			{ "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" } },
+			{ "<leader>bD", "<cmd>bdelete!<cr>", { desc = "Delete buffer (force)" } },
 			{
 				"<leader>bo",
 				"<Cmd>BufferLineCloseOthers<CR>",

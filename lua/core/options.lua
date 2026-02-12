@@ -10,7 +10,7 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
--- vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "80"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
