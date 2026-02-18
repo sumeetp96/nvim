@@ -51,7 +51,7 @@ map("n", "+", "<C-a>", { desc = "Increment number" })
 map("n", "-", "<C-x>", { desc = "Decrement number" })
 
 -- Toggle spell check
-map("n", "<leader>s", function()
+map("n", "<leader>sc", function()
 	vim.wo.spell = not vim.wo.spell
 	if vim.wo.spell then
 		print("Spell check enabled")

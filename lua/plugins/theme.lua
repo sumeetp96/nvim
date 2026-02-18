@@ -5,7 +5,7 @@ local themes = {
 	gruvbox_material = "gruvbox_material",
 }
 
-local active_theme = themes.kanagawa
+local active_theme = themes.rose_pine
 
 return {
 	--[[ Rose Pine ]]
@@ -15,7 +15,7 @@ return {
 		name = "rose-pine",
 		config = function()
 			require("rose-pine").setup({
-				variant = "main", -- main | moon | dawn
+				variant = "moon", -- main | moon | dawn
 			})
 			vim.cmd("colorscheme rose-pine")
 		end,
