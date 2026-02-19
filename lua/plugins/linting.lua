@@ -7,6 +7,7 @@ return {
 
 			-- Assign linters to filetypes
 			lint.linters_by_ft = {
+				json = { "jsonlint" },
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
 				javascriptreact = { "eslint_d" },
