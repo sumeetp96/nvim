@@ -38,11 +38,16 @@ return {
 			})
 
 			vim.lsp.enable({
-				"lua_ls",
-				"ts_ls",
 				"bashls",
+				"lua_ls",
+
+				"ts_ls",
+				"cssls",
+				"emmet_language_server",
+
 				"jsonls",
 				"yamlls",
+
 				"dockerls",
 			})
 		end,

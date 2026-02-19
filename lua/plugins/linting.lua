@@ -12,12 +12,15 @@ return {
 				javascriptreact = { "eslint_d" },
 				typescriptreact = { "eslint_d" },
 
-				json = { "jsonlint" },
-
 				css = { "stylelint" },
 				scss = { "stylelint" },
 				sass = { "stylelint" },
 				less = { "stylelint" },
+
+				html = { "htmlhint" },
+				xml = { "htmlhint" },
+
+				json = { "jsonlint" },
 			}
 
 			-- Create an autocmd to trigger linting

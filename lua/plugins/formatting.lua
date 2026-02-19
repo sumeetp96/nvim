@@ -15,6 +15,7 @@ return {
 					markdown = { "prettierd" },
 					html = { "prettierd" },
 					css = { "prettierd" },
+					xml = { "prettierd" },
 
 					sh = { "shfmt" },
 
