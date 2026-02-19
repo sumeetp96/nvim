@@ -42,6 +42,8 @@ return {
 				"ts_ls",
 				"bashls",
 				"jsonls",
+				"yamlls",
+				"dockerls",
 			})
 		end,
 	},
