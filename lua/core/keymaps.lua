@@ -22,8 +22,10 @@ map("v", ">", ">gv", { desc = "Indent right" })
 map("v", "<", "<gv", { desc = "Indent left" })
 
 -- Move selected block up/down
-map("v", "J", ":m '>+2<cr>gv=gv", { desc = "Move selection down" })
-map("v", "K", ":m '<-1<cr>gv=gv", { desc = "Move selection up" })
+map("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
+map("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Better paste (doesn't replace clipboard)
 map("v", "p", '"_dP', { desc = "Paste without yanking" })
@@ -106,8 +108,8 @@ map("n", "<leader>tmp", "<cmd>-tabmove<cr>", { desc = "Move tab left" })
 map("n", "<leader>tmn", "<cmd>+tabmove<cr>", { desc = "Move tab right" })
 
 -- Go to specific tab
-map("n", "<M0>", "1gt", { desc = "Go to tab 1" })
-map("n", "<M-1>", "2gt", { desc = "Go to tab 2" })
-map("n", "<M-2>", "3gt", { desc = "Go to tab 3" })
-map("n", "<M-3>", "4gt", { desc = "Go to tab 4" })
-map("n", "<M-4>", "5gt", { desc = "Go to tab 5" })
+map("n", "<M-1>", "1gt", { desc = "Go to tab 1" })
+map("n", "<M-2>", "2gt", { desc = "Go to tab 2" })
+map("n", "<M-3>", "3gt", { desc = "Go to tab 3" })
+map("n", "<M-4>", "4gt", { desc = "Go to tab 4" })
+map("n", "<M-5>", "5gt", { desc = "Go to tab 5" })
