@@ -7,11 +7,17 @@ return {
 
 			-- Assign linters to filetypes
 			lint.linters_by_ft = {
-				json = { "jsonlint" },
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
 				javascriptreact = { "eslint_d" },
 				typescriptreact = { "eslint_d" },
+
+				json = { "jsonlint" },
+
+				css = { "stylelint" },
+				scss = { "stylelint" },
+				sass = { "stylelint" },
+				less = { "stylelint" },
 			}
 
 			-- Create an autocmd to trigger linting
