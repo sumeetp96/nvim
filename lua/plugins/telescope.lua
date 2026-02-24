@@ -125,5 +125,13 @@ return {
 		})
 
 		telescope.load_extension("fzf")
+
+		-- Search visual selection
+		vim.keymap.set("v", "<leader>fW", function()
+			vim.cmd('noau normal! "vy"')
+			local text = vim.fn.getreg("v")
+			vim.fn.setreg("v", {})
+			require("telescope.builtin").live_grep({ default_text = text })
+		end, { desc = "Search visual selection in Telescope" })
 	end,
 }
