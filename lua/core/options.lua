@@ -2,15 +2,19 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
+vim.opt.fixeol = false
+
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
+vim.opt.linebreak = true
 vim.opt.colorcolumn = "80"
+vim.opt.showbreak = "↳ "
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

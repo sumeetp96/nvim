@@ -27,6 +27,11 @@ map("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
+-- Remap for dealing with word wrap
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map("n", "<leader>iw", ":set wrap!<CR>", { desc = "Toggle Wrap" })
+
 -- Better paste (doesn't replace clipboard)
 map("v", "p", '"_dP', { desc = "Paste without yanking" })
 
